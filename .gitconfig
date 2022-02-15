@@ -1,0 +1,19 @@
+[alias]
+	p = pull origin $(git rev-parse --abbrev-ref HEAD)
+	last = log -1 HEAD
+	tags = tag -l --sort=version:refname
+[pull]
+	rebase = false
+
+[user]
+	name = Jason R. Stevens, CFA
+	email = jason@tincre.com
+	signingkey = DF0AC20D8E2772B1
+[github]
+	user = thinkjrs
+[commit]
+	gpgsign = true
+[gpg]
+	program = gpg2
+[core]
+	ignorecase = false
