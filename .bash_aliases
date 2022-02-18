@@ -1,5 +1,7 @@
 # Long format list
 alias ll="ls -la"
+alias blck="black -l 79"
+alias ls='ls --group-directories-first --color=auto'
 
 # Print the public IP address
 alias myip='curl ipinfo.io/ip'
@@ -59,18 +61,22 @@ gc() {
 	git commit -m "$1"
 }
 gpo() {
+    git fetch --all
 	git pull origin $(gb)
 }
 gpr() {
+    git fetch --all
+    mmBranch=$(git branch -l master main | sed 's/^* //')
     git checkout develop
+    git merge mmBranch
 	git push origin develop
-	git checkout master
-	git pull origin master
+	git checkout mmBranch
+	git pull origin mmBranch
     git merge develop
-	git push origin master
+	git push origin mmBranch 
 	git push --tags
 	git checkout develop
-	git merge master 
+	git merge mmBranch
 	git push origin develop
 }
 gp() {
@@ -82,7 +88,7 @@ gst() {
 gur() {
     git remote add $1 https://github.com/$2/$1
     git fetch $1 
-    git checkout master 
-    git merge $1/master
+    mmBranch=$(git branch -l master main | sed 's/^* //')
+    git checkout mmBranch
+    git merge $1/mmBranch
 }
-
