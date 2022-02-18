@@ -68,15 +68,15 @@ gpr() {
     git fetch --all
     mmBranch=$(git branch -l master main | sed 's/^* //')
     git checkout develop
-    git merge mmBranch
+    git merge $mmBranch
 	git push origin develop
-	git checkout mmBranch
-	git pull origin mmBranch
+	git checkout $mmBranch
+	git pull origin $mmBranch
     git merge develop
-	git push origin mmBranch 
+	git push origin $mmBranch 
 	git push --tags
 	git checkout develop
-	git merge mmBranch
+	git merge $mmBranch
 	git push origin develop
 }
 gp() {
@@ -89,6 +89,6 @@ gur() {
     git remote add $1 https://github.com/$2/$1
     git fetch $1 
     mmBranch=$(git branch -l master main | sed 's/^* //')
-    git checkout mmBranch
-    git merge $1/mmBranch
+    git checkout $mmBranch
+    git merge $1/$mmBranch
 }
